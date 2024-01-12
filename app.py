@@ -1,6 +1,5 @@
 import json
-
-from flask import Flask, request, jsonify
+from flask import Flask, request
 import pytesseract
 import base64
 import spacy
