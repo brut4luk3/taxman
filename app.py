@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request, jsonify
 import pytesseract
 import base64
@@ -95,12 +97,12 @@ def extract_data_from_image():
     result = {
         'date': date,
         'value': value,
-        'origin': origin,
         'destiny': destiny,
+        'origin': origin,
         'success': True,
     }
 
-    return jsonify(result), 200
+    return json.dumps(result), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 
 if __name__ == '__main__':
