@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8852d90f-715c-4601-98d0-d2e52e33b50b" name="Changes" comment="Incluindo NPL">
+    <list default="true" id="8852d90f-715c-4601-98d0-d2e52e33b50b" name="Changes" comment="Phase 1 finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.png" beforeDir="false" afterPath="$PROJECT_DIR$/temp.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,13 +91,30 @@
       <option name="project" value="LOCAL" />
       <updated>1705077681476</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Phase 1 finished">
+      <option name="closed" value="true" />
+      <created>1705078530376</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705078530376</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Phase 1 finished">
+      <option name="closed" value="true" />
+      <created>1705078787220</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705078787220</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Commit" />
     <MESSAGE value="Incluindo NPL" />
-    <option name="LAST_COMMIT_MESSAGE" value="Incluindo NPL" />
+    <MESSAGE value="Phase 1 finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Phase 1 finished" />
   </component>
 </project>
