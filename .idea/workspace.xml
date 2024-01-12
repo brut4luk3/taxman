@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8852d90f-715c-4601-98d0-d2e52e33b50b" name="Changes" comment="Commit">
+    <list default="true" id="8852d90f-715c-4601-98d0-d2e52e33b50b" name="Changes" comment="Incluindo NPL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/temp.png" beforeDir="false" afterPath="$PROJECT_DIR$/temp.png" afterDir="false" />
@@ -69,12 +69,21 @@
       <option name="project" value="LOCAL" />
       <updated>1704999005036</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Incluindo NPL">
+      <option name="closed" value="true" />
+      <created>1705076057144</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705076057144</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Incluindo NPL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Incluindo NPL" />
   </component>
 </project>
