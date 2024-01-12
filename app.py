@@ -1,9 +1,14 @@
 from flask import Flask, request, jsonify
 import pytesseract
 import base64
+import spacy
 from dateparser import parse as parse_date
 
 app = Flask(__name__)
+
+# Carrega o modelo de processamento de linguagem natural do spaCy para português
+nlp = spacy.load("pt_core_news_sm")
+
 
 def is_valid_date(candidate):
     try:
@@ -14,6 +19,22 @@ def is_valid_date(candidate):
             return False
     except ValueError:
         return False
+
+
+def extract_names(text):
+    # Processa o texto usando spaCy
+    doc = nlp(text)
+
+    names = []
+
+    # Itera sobre as entidades identificadas pelo spaCy
+    for ent in doc.ents:
+        if ent.label_ == "PERSON" or ent.label_ == "ORG":
+            # Adiciona o nome ou instituição à lista
+            names.append(ent.text)
+
+    return names
+
 
 @app.route('/taxman/api/extract_data_from_image', methods=['POST'])
 def extract_data_from_image():
@@ -31,6 +52,8 @@ def extract_data_from_image():
 
     date = None
     value = None
+    origin = None
+    destiny = None
 
     words = text.split()
     i = 0
@@ -50,6 +73,14 @@ def extract_data_from_image():
             if is_valid_date(potential_date):
                 date = potential_date
 
+    # Extrai nomes de pessoas ou instituições
+    names = extract_names(text)
+
+    # Define "destiny" como o primeiro nome/instituição e "origin" como o segundo
+    if len(names) >= 2:
+        destiny = names[0]
+        origin = names[1]
+
     for word in words:
         if ',' in word:
             try:
@@ -58,11 +89,9 @@ def extract_data_from_image():
                 pass
 
     # Retorna o resultado da análise em um formato JSON
-    if date is not None and value is not None:
-        result = {'date': date, 'value': value, 'success': True}
-    else:
-        result = {'date': None, 'value': None, 'success': False}
+    result = {'date': date, 'value': value, 'success': True, 'origin': origin, 'destiny': destiny}
     return jsonify(result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
