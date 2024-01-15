@@ -3,6 +3,7 @@ from flask import Flask, request
 import pytesseract
 import base64
 import requests
+import os
 from dateparser import parse as parse_date
 
 app = Flask(__name__)
@@ -22,7 +23,7 @@ def is_valid_date(candidate):
 def extract_names_with_openai(text):
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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'
+        'Authorization': os.getenv('SECRET_KEY')
     }
     data = {
         "model": "gpt-4",
