@@ -2,13 +2,10 @@ import json
 from flask import Flask, request
 import pytesseract
 import base64
-import spacy
+import requests
 from dateparser import parse as parse_date
 
 app = Flask(__name__)
-
-# Loads spaCy's NPL toolkit for PT-BR
-nlp = spacy.load("pt_core_news_sm")
 
 # Verifies if the date is valid
 def is_valid_date(candidate):
@@ -21,20 +18,39 @@ def is_valid_date(candidate):
     except ValueError:
         return False
 
-# Verifies if the name is valid - This whole thing is kinda of working, and kinda of not...
-def extract_names(text):
-    # Uses NPL to proccess the names
-    doc = nlp(text)
+# Uses OpenAI Completions endpoint to proccess the name with advanced NPL
+def extract_names_with_openai(text):
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer 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'
+    }
+    data = {
+        "model": "gpt-4",
+        "messages": [
+            {
+                "role": "system",
+                "content": "Você é um bot que visualiza o texto de um comprovante de pagamento transcrito pelo Tesseract e retorna apenas o nome do destinatário e remetente da transação."
+            },
+            {
+                "role": "user",
+                "content": text
+            }
+        ],
+        "temperature": 0.7
+    }
 
-    names = []
+    response = requests.post('https://api.openai.com/v1/chat/completions', headers=headers, json=data)
 
-    # Iterates through the entities found by spaCy
-    for ent in doc.ents:
-        if ent.label_ == "PERSON" or ent.label_ == "ORG":
-            # Adds the name of the person / company on the list
-            names.append(ent.text)
+    if response.status_code == 200:
+        response_json = response.json()
+        content = response_json['choices'][0]['message']['content']
+        lines = content.split('\n')
+        destiny = lines[0].split(': ')[1] if len(lines) > 0 else None
+        origin = lines[1].split(': ')[1] if len(lines) > 1 else None
+        return destiny, origin
 
-    return names
+    else:
+        return None, None
 
 # This the main function that proccess the request
 @app.route('/taxman/api/extract_data_from_image', methods=['POST'])
@@ -50,7 +66,7 @@ def extract_data_from_image():
     text = pytesseract.image_to_string('temp.png', lang='por')
 
     # Uncomment this little guy to debug this unholy piece of crap
-    # print(text)
+    print(text)
 
     date = None
     value = None
@@ -77,7 +93,7 @@ def extract_data_from_image():
                 date = potential_date
 
     # Calls the NPL function to catch names
-    names = extract_names(text)
+    names = extract_names_with_openai(text)
 
     # Defines destiny as the first name/company and origin as the second (this is usually the case with most vouchers)
     if len(names) >= 2:
