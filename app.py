@@ -65,8 +65,8 @@ def extract_data_from_image():
     # Uses Tesseract to extract text from image
     text = pytesseract.image_to_string('temp.png', lang='por')
 
-    # Uncomment this little guy to debug this unholy piece of crap
-    print(text)
+    # Uncomment this lil bastard to debug this GODLY masterpiece of coding
+    # print(text)
 
     date = None
     value = None
