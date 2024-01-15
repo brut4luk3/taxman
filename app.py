@@ -4,6 +4,7 @@ import pytesseract
 import base64
 import requests
 import os
+import re
 from dateparser import parse as parse_date
 
 app = Flask(__name__)
@@ -103,11 +104,17 @@ def extract_data_from_image():
 
     # Checks for texts with ',', those are usually monetary values
     for word in words:
-        if ',' in word:
-            try:
-                value = float(word.replace(',', '.'))
-            except ValueError:
-                pass
+        monetary_values = re.findall(r'R\$\s?(\d+(?:\.\d{3})*(?:,\d{2})?)', text)
+
+        if monetary_values:
+            value = float(monetary_values[0].replace('.', '').replace(',', '.'))
+
+        else:
+            if ',' in word:
+                try:
+                    value = float(word.replace(',', '.'))
+                except ValueError:
+                    pass
 
     # Returns the JSON response
     result = {
