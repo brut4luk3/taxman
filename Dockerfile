@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y tesseract-ocr tesseract-ocr-por
 
 # Set the TESSDATA_PREFIX environment variable
-ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/5.3.1/tessdata/
+ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/tessdata/
 
 # Set working directory
 WORKDIR /app
