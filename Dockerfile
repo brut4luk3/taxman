@@ -1,9 +1,12 @@
 # Base image
 FROM python:3.8-slim
 
-# Install Tesseract and Portuguese language package
+# Install Tesseract
 RUN apt-get update && \
-    apt-get install -y tesseract-ocr tesseract-ocr-por
+    apt-get install -y tesseract-ocr wget
+
+# Manually download Portuguese training data
+RUN wget https://github.com/tesseract-ocr/tessdata/raw/main/por.traineddata -P /usr/share/tesseract-ocr/tessdata/
 
 # Set the TESSDATA_PREFIX environment variable
 ENV TESSDATA_PREFIX=/usr/share/tesseract-ocr/tessdata/
