@@ -51,7 +51,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="SECRET_KEY" value="Bearer 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" />
+        <env name="SECRET_KEY" value="Bearer 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" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -209,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705412824739</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Powered by ChatGPT">
+      <option name="closed" value="true" />
+      <created>1705413769636</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705413769637</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
