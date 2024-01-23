@@ -68,7 +68,7 @@ def extract_data_from_image():
     text = pytesseract.image_to_string('temp.png', lang='por')
 
     # Uncomment this lil bastard to debug this GODLY masterpiece of coding
-    # print(text)
+    print(text)
 
     date = None
     value = None
